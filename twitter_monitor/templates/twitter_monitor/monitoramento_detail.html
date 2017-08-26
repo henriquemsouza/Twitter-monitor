@@ -1,0 +1,85 @@
+{% extends "base_generic.html" %}
+{% block link %}
+	<li><a href="{% url 'monitoramento:Grafico' pk %}">Graficos</a></li>
+{% endblock %}
+
+{% block sidebar %}
+      <ul class="sidebar-nav">
+	  <li style="margin-left:7px"><a>Monitoramento: </br>{{ atual.palavra }}</a></li>
+      </ul>
+      <ul class="sidebar-nav">	
+          <li style="margin:7px">Logado: {{ usuario }}</li>
+	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
+	  <li style="margin:7px"><a href="{% url 'monitoramento:Grafico' pk %}">Graficos</a></li>
+	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramento_delete' pk %}">Deletar Monitoramento</a></li>
+	  </br>
+          <li style="margin:7px"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+      </ul>
+      <form action="{% url 'monitoramento:aplicar' pk %}" method="post">
+      {% csrf_token %}
+      <ul class="sidebar-nav">
+	  <li style="margin:7px"><a>Acoes</a></li>
+	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="NEG" />
+    	  <label >Negativo</label><br /></li>
+    	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="POS" />
+    	  <label>Positivo</label><br /></li>
+    	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="NEU" />
+    	  <label>Neutro</label><br /></li>
+    	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="deletar" />
+    	  <label>Excluir</label><br /></li>
+    	  <li style="margin:7px"><label>Tag:</label></br>
+	  <input style="color:black;padding-left:7px;background-color:rgba(220, 217, 227, 0.68);border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(153, 79, 232, 0.4), -2px 1px 2px rgba(153, 79, 232, 0.4), 1px 1px 2px rgba(153, 79, 232, 0.4);width:120px;margin:7px" type="text" name="tag" id="1" />
+    	  <br /></li>
+    	  <li style="margin:7px"><input style="color:black;padding-left:7px;background-color:rgba(220, 217, 227, 0.68);border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);" type="submit" value="Aplicar" /></li>	
+      </ul>
+      <ul class="sidebar-nav">
+	  <li style="margin:7px"><a>Filtros</a></li>
+      	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="por_sem" />
+    	  <label>Semanal</label><br /></li>
+    	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="por_mes" />
+    	  <label>Mensal</label><br /></li>
+    	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="total" />
+    	  <label>Total</label><br /></li>
+    	  <li style="margin:7px"><input  style="color:black;padding-left:7px;background-color:rgba(220, 217, 227, 0.68);border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);" type="submit" value="Filtrar" /></li>
+      
+      {% endblock %}
+{% block content %}
+    <h1>{{monitoramento}} Itens no Monitoramento</h1>
+
+    {% if object_list %}  
+    <ul style="background:#eff0f0; padding:10px;margin:0 auto;margin-top:21px;margin-left:40px;position:relative;box-shadow: 2px 1.5px 2px rgba(93, 222, 234, 0.5), -1px 1px 2px rgba(93, 222, 234, 0.5), 2px 1.5px 2px rgba(93, 222, 234, 0.5);border-style:solid;border-color:gray black black black;border-width:2px;border-radius: 5px;overflow:hidden"> 
+			
+	{% for it in object_list %}
+	<div style="background:white;box-shadow: 1px 1px 2px black;padding:1px;margin-top:1px;border-style:outset;border-color:lightgrey black black black;border-width:1px;border-radius: 5px;overflow:hidden">
+	<li style="padding:5px"><p><span style="{%if it.quali == 'POS'%}background-color:rgba(34, 201, 8, 0.44){%elif it.quali == 'NEU' %}background-color:#fadb6b{% elif it.quali == 'NEG' %}background-color:#f95353{% else %} background-color:white{% endif %} ;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px"> Sentimento: {{ it.quali }}</span><span style="background-color:white;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px;margin-left:1%">{{ it.data_pub }}</span></p></li><li style="padding:5px"><p><span style="background-color:oldlace;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius:5px;padding:2px">@{{ it.nome_twi }}</span><span style="background-color:#b488ce;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px;margin-left:7px;{%if it.tag <= 1 %}visibility:hidden{% else %}visibilty:visible{% endif %}">{{ it.tag }}</span></p></li>
+	<li style="padding:5px;margin:7px"><p style="font-family:'calibri'">{{ it.texto }}</p></li>
+	    <li>		  
+    		   <input style="margin:7px" type="checkbox" name="choice" id="1" value= "{{ it.id }}"/>
+    	  	   <label style="font-family:'calibri';margin:1px">Selecionar</label><br /></li>
+        </div></br>
+	{% endfor %}    	
+    </ul>
+    </form>
+    <div style="margin-left: 20px;position:relative;left:20px" class="pagination">
+    <span style="color:white;border-bottom:1.5px dotted white;padding-bottom:1px"class="step-links">
+        {% if object_list.has_previous %}
+            <a style="border-left:2px dotted #5ddeea;padding-left:5px" href="?page={{ object_list.previous_page_number }}">Anterior</a>
+        {% endif %}
+    <span style="color:white;border-left:2px dotted purple;padding-left:5px" class="current">
+            Pagina {{ object_list.number }} de {{ object_list.paginator.num_pages }}
+    <span class="step-links">
+	{% if object_list.has_next %}
+            <a style="border-left:2px dotted #5ddeea;margin-left:5px;padding-left:5px" href="?page={{ object_list.next_page_number }}"> Proxima</a>
+        {% endif %}
+        
+        </span>
+       </span> 
+    </span>
+</div>
+
+    </br>
+    </br>
+    {% else %}
+	<p>Nenhum item coletado</p>
+    {% endif %}
+{% endblock %} 

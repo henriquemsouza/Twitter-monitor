@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Deletar Monitoramento</h1></br>
+
+<div style="margin-left: 20px;position:relative;left:20px">
+    <span style="color:white;border-bottom:1.5px dotted white;padding-bottom:1px">
+            <a style="border-left:2px dotted #5ddeea;padding-left:5px">Tem certeza que deseja excluir o monitoramento: {{ monitoramento.palavra }}</a>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  </br><input style="color:black;padding-left:7px;background-color:white;border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);" type="submit" action="" value="Sim, excluir."/>
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+.sidebar-nav 
+{
+	margin-top: 20px;
+	padding: 0;
+ 	font-family:'Calibri';
+	list-style-type: none;
+	border-style: solid;
+	border-color: gray black black black;
+	border-radius: 5px;
+	background-color: white;
+	box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+	
+}
+
+@keyframes anime1
+{
+    from {height: 3.5%; }
+    to {height: 5%; }
+}
+
+@keyframes anime2
+{
+    from {margin-top: 100%; }
+    to {margin-top: 5%; }
+}
+
+
+@keyframes anime3
+{
+    from {left: 100%; }
+    to {left: 50%; }
+}
+
+@keyframes anime4
+{
+    from {margin-top: 100%; }
+    to {margin-top: 29%; }
+}
+
+@keyframes anime5
+{
+    from {margin-top: 100%; }
+    to {margin-top: 1%; }
+}
+
+@keyframes anime6
+{
+    from {width: 3.5%; }
+    to {width: 17.5%; }
+}
+
+@keyframes anime7
+{
+    from {filter:blur(0px); }
+    to {filter:blur(7px); }
+}
+
+@keyframes anime8
+{
+    from {filter:opacity(40%); }
+    to {filter:opacity(0%); }
+}
+
+@keyframes anime9
+{
+    from {filter:opacity(75%); }
+    to {filter:opacity(10%); }
+}
+
+.but:hover
+{
+    animation: anime1 1s ease 0.5s infinite normal
+}
+
+h1 
+{
+    	font-size: 40px;
+	display:block;
+	color:white;
+	font-family:'Calibri';
+	text-shadow: 1px 1px 2px white;
+	margin:0 auto;
+	margin-top:20px;
+	margin-left:40px;
+	border-bottom:1px dotted white;
+	border-left:2px dotted purple;
+	text-align:center;
+}
+
+body 
+{
+	background: #1d2534;
+}

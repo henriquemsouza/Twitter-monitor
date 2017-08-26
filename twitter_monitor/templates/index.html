@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+   {% block title %}<title>MoniTwi</title>{% endblock %}
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="https://code.highcharts.com/highcharts.src.js"></script>
+   <script src="http://code.highcharts.com/modules/broken-axis.src.js"></script>
+   {% block head%}
+   {% endblock %}
+   {% load staticfiles %}
+   <link rel="stylesheet"  type="text/css" href="{% static 'livros/style.css' %}" />
+</head>
+{% load static %}
+<body style="background-image:url('https://github.com/guilhermegff/images/blob/master/cubo2.jpg?raw=true'); background-repeat:no-repeat; background-size:cover;background-attachment:fixed">
+<div style="width:100%;height:13%;opacity:0.2;padding:5%;margin-top:1%;z-index:0;position:fixed;background:#1d2534;animation: anime5 1s ease-in-out 1s 1 normal, anime8 5s ease-in-out 4s infinite alternate">
+</div>
+<div style="z-index:1;opacity:1;position:relative;padding:3%;width:16.5%;margin-left:13.5%;animation: anime6 5s ease-in-out 1s infinite alternate">
+<h2 style="color:white;border:none;margin-left:15%;text-shadow: 1px 1px 1px purple;border-bottom:dotted 2px #47bde1;border-left:dotted 2px purple;padding-left:5px;padding-bottom:2px;border-width:4px">MoniTwi</h2>
+</div>
+<div style="width:10%;height:100%;opacity:0.055;z-index:0;padding:5%;margin-top:5%;margin-left:10%;z-index:0;position:fixed;background:white;animation: anime4 1s ease-in-out 1s 1 normal, anime9 5s linear 1s infinite alternate">
+</div>
+<div class="but" style="z-index:1;opacity:1;position:fixed;margin-top:29%;margin-left:13%;border-left:dotted 2px purple;border-bottom:dotted 2px #47bde1;border-width:4px">
+<a href="{% url 'monitoramento:monitoramentos' %}" style="color:white;border:none;text-shadow: 1px 1px 1px purple;font-size:16px;padding-left:5px">Entrar</a>
+</div>
+<div style="width:10%;height:100%;opacity:0.055;z-index:1;padding:5%;margin-top:5%;margin-left:24%;z-index:0;position:fixed;background:white;animation: anime4 1s ease-in-out 1s 1 normal, anime9 5s linear 0.5s infinite alternate">
+</div>
+<div class="but" style="z-index:1;opacity:1;position:fixed;margin-top:29%;margin-left:26%;border-left:dotted 4px purple;border-bottom:dotted 4px #47bde1">
+<a href="{% url 'monitoramento:cadastro' %}" style="color:white;border:none;text-shadow: 1px 1px 1px purple;font-size:16px;padding-left:5px">Cadastrar</a>
+</div>
+<div style="animation: anime2 1s ease-in-out 1s 1 normal, anime8 5s ease-in-out 4s infinite alternate;width:100%;height:10%;opacity:0.2;padding:5%;margin-left:46%;margin-top:5%;z-index:0;position:fixed;background:#1d2534">
+</div>
+<div style="z-index:1;opacity:1;position:fixed;margin-top:6%;margin-left:50%">
+<h3 style="color:white;border:none;font-size:30px;text-shadow: 1px 1px 1px purple, -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black">Descubra, classifique e monitore mensagens do Twitter.</h3>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+{% block head %}
+   {% load chartit %}
+   {{ chart_list|load_charts:"chart_1" }}
+{% endblock %}
+{% block sidebar %}
+      <form  action="{% url 'monitoramento:Grafico' monit_id %}" method="post">
+      {% csrf_token %}
+      <ul class="sidebar-nav">
+	  <li style="margin-left:7px"><a href="{% url 'monitoramento:monitoramento_detail' pk=monit_id filtro=0 %}">Monitoramento:</br> {{ atual.palavra }}</a></li>
+      </ul>
+      <ul class="sidebar-nav">	
+          <li style="margin:7px">Logado: {{ usuario }}</li>
+	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
+	  </br>
+          <li style="margin:7px"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+      </ul>
+      <ul class="sidebar-nav">
+	  <li style="margin:7px" ><a>Filtros</a></li>
+	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="por_sem" />
+   	  <label>Semanal</label></br></li>
+   	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="por_mes" />
+   	  <label>Mensal</label></br></li>
+   	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="total" />
+	  <label>Total</label></br></li>
+   	  <li style="margin:7px"><input style="color:black;padding-left:7px;background-color:rgba(220, 217, 227, 0.68);border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);" type="submit" value="Filtrar" /></li>
+      </ul>
+      </form>
+      {% endblock %}
+{% block content %}
+   <h1>Itens no Monitoramento</h1>
+   {% block title %}<title>GraficoView</title>{% endblock %}  
+   <form action="{% url 'monitoramento:Grafico' monit_id %}" method="post">
+   {% csrf_token %} 
+   <div style="margin:0 auto;position:absolute;width:800px;height:400px;margin-top:20px;left:14%;box-shadow: 1px 0.5px 2px #5ddeea;border-style:outset;border-color:lightgrey black black lightgrey;border-width:2px;border-radius: 5px;overflow:hidden"" id="chart_1"> Chart will be rendered here </div>
+{% endblock %}

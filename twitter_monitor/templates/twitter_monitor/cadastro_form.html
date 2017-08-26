@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Cadastro</h1></br>
+
+<div style="margin-left: 20px;position:relative;left:20px;overflow-x:hidden">
+    <span style="color:white;border-bottom:1.5px dotted white;padding-bottom:1px">
+            <a style="border-left:2px dotted #5ddeea;padding-left:5px">Digite Nome e Senha</a></span>
+<div style="margin-top:20px;width:63%;color:black;padding-left:7px;background-color:white;border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);">
+<form style="color:black" method="post">
+    {% csrf_token %}</br>
+    {{ form.as_p }}
+    <input style="color:black;padding-left:7px;background-color:white;border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);margin-bottom:5px" type="submit" value="Criar" />
+    </form>
+</div>
+</div>
+{% endblock %}
