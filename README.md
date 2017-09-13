@@ -33,3 +33,21 @@ virtualenv <venvs_path>/monitwi/ -p python2.7
  ```
  pip install -U pip && pip install -r requirements.txt
  ```
+## create postgres database
+ 
+ ```
+sudo apt-get install python-pip python-dev libpq-dev postgresql postgresql-contrib
+sudo su - postgres
+
+createdb mydb
+createuser -P myuser
+pass 12345678
+
+acess
+psql mydb
+
+ comando a seguir define direito de acesso ao novo usuário.
+GRANT ALL PRIVILEGES ON DATABASE mydb TO myuser;
+
+\q
+ ```

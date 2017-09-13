@@ -83,13 +83,20 @@ WSGI_APPLICATION = 'app_monit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'piehjaux',
+    'NAME': 'piehjaux',
 	'USER': 'piehjaux',
 	'HOST':'',
 	'PORT':'5432',
 	'PASSWORD':'',
-	
-    }
+
+ #uncomment to run  locally
+#	'NAME': 'mydb',
+#    'USER': 'myuser',
+#    'PASSWORD': '12345678',
+#    'HOST': '127.0.0.1',
+#    'PORT': '', # 8000 is default
+
+}
 }
 
 
