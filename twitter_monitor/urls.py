@@ -3,7 +3,7 @@ from twitter_monitor import views
 
 from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework.schemas import get_schema_view
-
+#Urls das views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^cadastro/$', views.cadastro, name='cadastro'),
@@ -18,7 +18,7 @@ urlpatterns = [
 ]
 
 schema_view = get_schema_view(title='Pastebin API')
-
+#Urls da API Rest
 urlpatterns += [
     url(r'^monitoramentos/schema/$', schema_view, name='schema'),
     url(r'^monitoramentos/(?P<usuario>[0-9]+)/$', views.MonitoramentoList.as_view()),
