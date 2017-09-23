@@ -38,7 +38,7 @@ class MonitoramentoListView(LoginRequiredMixin, generic.ListView):
 
 from django.contrib.auth.decorators import login_required
 
-@login_required
+@login_required #As views com este decorador só podem ser acessadas por usuários logados.
 @csrf_exempt
 def GraficoView(request, pk):
     filtro = request.POST.get('acao')
@@ -56,7 +56,8 @@ def GraficoView(request, pk):
 	    atuais_id.append(monitor.get('id'))
 	if(monit_id not in atuais_id):
 	    return HttpResponseRedirect(reverse('monitoramento:monitoramentos'))
-    monitoramento_atual = Monitoramento.objects.get(id=monit_id)	  
+    monitoramento_atual = Monitoramento.objects.get(id=monit_id)
+    #Seleção dos gráficos por tipo de filtro
     if(filtro == "por_mes"):
     	cb = combview_mensal(monit_id) 
     elif(filtro == "por_sem"):
@@ -68,6 +69,7 @@ def GraficoView(request, pk):
 
 @login_required
 @csrf_exempt
+#View com a listagem de itens dentro de um monitoramento
 def MonitoramentoDetailView(request, pk, filtro):
     monit_id = int(pk)
     query = filtro
@@ -105,6 +107,7 @@ def MonitoramentoDetailView(request, pk, filtro):
 
     return render_to_response('twitter_monitor/monitoramento_detail.html', {'pk': monit_id, 'atual': nome_monitor, 'usuario': usuario, 'object_list': itens, 'monitoramento': monitoramento})
 
+#View que aplica os filtros, classificações e ação de deletar 
 @csrf_exempt
 def aplicar(request, pk):
     
@@ -140,7 +143,7 @@ def aplicar(request, pk):
 	    objeto.save()
 
     return HttpResponseRedirect(reverse('monitoramento:monitoramento_detail', args=(objeto.monit_id, 0)))
-
+#View que configura a URL de busca 
 @csrf_exempt
 def coletar(request):
     pk = request.POST.get('palavra')
@@ -165,6 +168,7 @@ def coletar(request):
       	
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+#View de criação de um novo monitoramento
 class MonitoramentoCreate(LoginRequiredMixin, CreateView):
     model = Monitoramento
     fields = ['palavra']
@@ -176,6 +180,7 @@ class MonitoramentoCreate(LoginRequiredMixin, CreateView):
 	object.save()
 	return super(MonitoramentoCreate, self).form_valid(form)
 
+#View de cadastro para novo usuário
 def cadastro(request):
     if request.method == 'POST':
 	form = UserCreationForm(request.POST)
@@ -189,16 +194,18 @@ def cadastro(request):
     else:
 	form = UserCreationForm()
     return render(request, 'twitter_monitor/cadastro_form.html', {'form': form})
-	
+
+#View de mudança da palavra monitorada
 class MonitoramentoUpdate(UpdateView):
     model = Monitoramento
     fields = ['palavra']
 
+#View para exclusão de monitoramentos existentes
 class MonitoramentoDelete(DeleteView):
     model = Monitoramento
     success_url = reverse_lazy('monitoramento:monitoramentos')
 
-
+#Views da API Rest
 from serializers import MonitoramentoSerializer, ItemSerializer
 from django.db.models import Q
 from rest_framework import generics
