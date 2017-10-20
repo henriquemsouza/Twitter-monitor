@@ -1,79 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-   {% block title %}<title>MoniTwi</title>{% endblock %}
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <script src="https://code.highcharts.com/highcharts.src.js"></script>
-   <script src="http://code.highcharts.com/modules/broken-axis.src.js"></script>
-   {% block head%}
-   {% endblock %}
-   {% load staticfiles %}
-   <link rel="stylesheet"  type="text/css" href="{% static 'livros/style.css' %}" />
+    {% block title %}
+    <title>MoniTwi</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="http://code.highcharts.com/modules/broken-axis.src.js"></script>
+    {% block head%} {% endblock %} {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Style/style.css' %}" />
 </head>
 
 <body>
     <div class="container-fluid">
-     <div class="row">
-      <div class="col-sm-2">
-      {% block sidebar2 %}
-      {% endblock %}
-      {% block sidebar %}
-      <ul class="sidebar-nav">
-	  <li style="text-align:center;font-family:'Calibri'"><a>MoniTwi</a></li></br>
-      </ul>
-      <ul class="sidebar-nav">
-	{% if user.is_authenticated %}
-          <li style="margin:7px">Logado: {{user.get_username }}</li>
-	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
-	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramento_create' %}">Criar Monitoramento</a></li>
-	  <li style="margin:7px"><a href="{% url 'monitoramento:schema' %}">API</a></li>
-	  </br>
-          <li style="margin:7px"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
-	  {% if monitoramento_list %}
-	</ul>
-	<ul class="sidebar-nav">
-	  <form action="{% url 'monitoramento:coletar' %}" method="post">
-          {% for monitoramento in object_list %}
-	  
-	  <li style="margin:7px"><a style="margin:7px;position:absolute;right:10%;padding:7px;background-color:white;border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);color:black;font-family:'Calibri';padding:3px" href="{% url 'monitoramento:monitoramento_detail' pk=monitoramento.pk filtro=0 %}"> {{ monitoramento.palavra }}</a>
-	    <input style="width:40px;height:40px;position:relative;box-shadow: 1px 1px 1px purple;font-family:'Calibri';font:button;margin:7px" name="palavra" type="image"  src="https://github.com/guilhermegff/images/blob/master/cubo3.jpg?raw=true" value="{{ monitoramento.pk }}"></li>
-	{% endfor %}
-    	{% endif %}
-    </ul>
-    </form>
-	{% else %}
-	  <li style="margin:7px"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
-	{% endif %}
-      </ul>
-      {% endblock %}
-      </div>
-      <div class="col-sm-10">
-      {% block content %}{% endblock %}
+        <div class="row">
+            <div class="col-sm-2">
+                {% block sidebar2 %} {% endblock %} {% block sidebar %}
+                <ul class="sidebar-nav">
+                    <li style="text-align:center;font-family:'Calibri'"><a>MoniTwi</a></li>
+                    </br>
+                </ul>
+                <ul class="sidebar-nav">
+                    {% if user.is_authenticated %}
+                    <li style="margin:7px">Logado: {{user.get_username }}</li>
+                    <li style="margin:7px"><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
+                    <li style="margin:7px"><a href="{% url 'monitoramento:monitoramento_create' %}">Criar Monitoramento</a></li>
+                    <li style="margin:7px"><a href="{% url 'monitoramento:schema' %}">API</a></li>
+                    </br>
+                    <li style="margin:7px"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+                    {% if monitoramento_list %}
+                </ul>
+                <ul class="sidebar-nav">
+                    <form action="{% url 'monitoramento:coletar' %}" method="post">
+                        {% for monitoramento in object_list %}
 
-      {% block pagination %}
-         {% if is_paginated %}
-	     <div class="pagination">
-		<span class="page-links">
+                        <li style="margin:7px"><a style="margin:7px;position:absolute;right:10%;padding:7px;background-color:white;border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);color:black;font-family:'Calibri';padding:3px"
+                                href="{% url 'monitoramento:monitoramento_detail' pk=monitoramento.pk filtro=0 %}"> {{ monitoramento.palavra }}</a>
+                            <input style="width:40px;height:40px;position:relative;box-shadow: 1px 1px 1px purple;font-family:'Calibri';font:button;margin:7px" name="palavra" type="image" src="https://github.com/guilhermegff/images/blob/master/cubo3.jpg?raw=true" value="{{ monitoramento.pk }}"></li>
+                        {% endfor %} {% endif %}
+                </ul>
+                </form>
+                {% else %}
+                <li style="margin:7px"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                {% endif %}
+                </ul>
+                {% endblock %}
+            </div>
+            <div class="col-sm-10">
+                {% block content %}{% endblock %} {% block pagination %} {% if is_paginated %}
+                <div class="pagination">
+                    <span class="page-links">
 		    {% if page_obj.has_previous %}
 			<a href="{{ request.path }}?page={{ page_obj.previous_page_number">Anterior</a>
 		    {% endif %}
 		    <span class="page-current">
 			Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-		    </span>
-		    {% if page_obj.has_next %}
-			<a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Seguinte</a>
-		    {% endif %}
-		</span>
-	     </div>
-	 {% endif %}
-    {% endblock %}
-     </div>
-   </div>
-  </div>
+		    </span> {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Seguinte</a> {% endif %}
+                    </span>
+                </div>
+                {% endif %} {% endblock %}
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

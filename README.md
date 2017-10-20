@@ -46,8 +46,47 @@ pass 12345678
 acess
 psql mydb
 
- comando a seguir define direito de acesso ao novo usuário.
+The following command defines access rights for the new user.
 GRANT ALL PRIVILEGES ON DATABASE mydb TO myuser;
 
 \q
  ```
+
+
+***
+***
+## how to run the project on windows
+*** 
+1. download PgAdmin 3 or PgAdmin 4:
+##### create a postgres database with the following information
+
+```
+db name mydb
+user name myuser
+password 12345678
+ ```
+#### If you do not know how to configure pgadmin follow the tutorial of the link below 
+ [Tutorial](https://confluence.atlassian.com/display/CONF30/Database+Setup+for+PostgreSQL+on+Windows#app-switcher)
+
+2. Creating virtualenv:
+ ```
+Open the CMD in the desired folder
+mkdir virtualenv
+c:\Python27\Scripts\virtualenv.exe virtualenv\monitwi
+virtualenv\ENVvir\monitwi\activate
+ ```
+ 
+3. Inside the project folder, install all dependencies:
+ ```
+pip install -r requirements.txt
+ ```
+ 
+ 4. Run the commands below:
+ ```
+python manage.py migrate
+python manage.py makemigrations
+python manage.py createsuperuser
+python manage.py runserver
+ ```
+
+

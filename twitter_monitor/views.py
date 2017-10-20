@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
 from .models import Monitoramento, Item
 from django.shortcuts import get_object_or_404, render, render_to_response, redirect

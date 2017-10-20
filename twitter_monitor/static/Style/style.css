@@ -1,0 +1,331 @@
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    font-family: 'Calibri';
+    list-style-type: none;
+    border-style: solid;
+    border-color: gray black black black;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+}
+
+@keyframes anime1 {
+    from {
+        height: 3.5%;
+    }
+    to {
+        height: 5%;
+    }
+}
+
+@keyframes anime2 {
+    from {
+        margin-top: 100%;
+    }
+    to {
+        margin-top: 5%;
+    }
+}
+
+@keyframes anime3 {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+@keyframes anime4 {
+    from {
+        margin-top: 100%;
+    }
+    to {
+        margin-top: 29%;
+    }
+}
+
+@keyframes anime5 {
+    from {
+        margin-top: 100%;
+    }
+    to {
+        margin-top: 1%;
+    }
+}
+
+@keyframes anime6 {
+    from {
+        width: 3.5%;
+    }
+    to {
+        width: 17.5%;
+    }
+}
+
+@keyframes anime7 {
+    from {
+        filter: blur(0px);
+    }
+    to {
+        filter: blur(7px);
+    }
+}
+
+@keyframes anime8 {
+    from {
+        filter: opacity(40%);
+    }
+    to {
+        filter: opacity(0%);
+    }
+}
+
+@keyframes anime9 {
+    from {
+        filter: opacity(75%);
+    }
+    to {
+        filter: opacity(10%);
+    }
+}
+
+h1 {
+    font-size: 40px;
+    display: block;
+    color: white;
+    font-family: 'Calibri';
+    text-shadow: 1px 1px 2px white;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-left: 40px;
+    border-bottom: 1px dotted white;
+    border-left: 2px dotted purple;
+    text-align: center;
+}
+
+body {
+    background: #1d2534;
+}
+
+
+/*index  style*/
+
+.bodyhome {
+    background-image: url('https://github.com/guilhermegff/images/blob/master/cubo2.jpg?raw=true');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.divOne {
+    width: 100%;
+    height: 13%;
+    opacity: 0.2;
+    padding: 5%;
+    margin-top: 1%;
+    z-index: 0;
+    position: fixed;
+    background: #1d2534;
+    animation: anime5 1s ease-in-out 1s 1 normal, anime8 5s ease-in-out 4s infinite alternate;
+}
+
+.divTitle {
+    z-index: 1;
+    opacity: 1;
+    position: relative;
+    padding: 3%;
+    width: 16.5%;
+    margin-left: 13.5%;
+    animation: anime6 5s ease-in-out 1s infinite alternate;
+}
+
+.h2DivTitle {
+    color: white;
+    border: none;
+    margin-left: 15%;
+    text-shadow: 1px 1px 1px purple;
+    border-bottom: dotted 2px #47bde1;
+    border-left: dotted 2px purple;
+    padding-left: 5px;
+    padding-bottom: 2px;
+    border-width: 4px
+}
+
+.divTwo {
+    width: 10%;
+    height: 100%;
+    opacity: 0.055;
+    z-index: 0;
+    padding: 5%;
+    margin-top: 5%;
+    margin-left: 10%;
+    z-index: 0;
+    position: fixed;
+    background: white;
+    animation: anime4 1s ease-in-out 1s 1 normal, anime9 5s linear 1s infinite alternate;
+}
+
+.but {
+    z-index: 1;
+    opacity: 1;
+    position: fixed;
+    margin-top: 29%;
+    margin-left: 13%;
+    border-left: dotted 2px purple;
+    border-bottom: dotted 2px #47bde1;
+    border-width: 4px
+}
+
+.but:hover {
+    animation: anime1 1s ease 0.5s infinite normal
+}
+
+.butAhref {
+    color: white;
+    border: none;
+    text-shadow: 1px 1px 1px purple;
+    font-size: 16px;
+    padding-left: 5px
+}
+
+.divThree {
+    width: 10%;
+    height: 100%;
+    opacity: 0.055;
+    z-index: 1;
+    padding: 5%;
+    margin-top: 5%;
+    margin-left: 24%;
+    z-index: 0;
+    position: fixed;
+    background: white;
+    animation: anime4 1s ease-in-out 1s 1 normal, anime9 5s linear 0.5s infinite alternate;
+}
+
+.ButRegister {
+    z-index: 1;
+    opacity: 1;
+    position: fixed;
+    margin-top: 29%;
+    margin-left: 26%;
+    border-left: dotted 4px purple;
+    border-bottom: dotted 4px #47bde1;
+}
+
+.ButRegister:hover {
+    animation: anime1 1s ease 0.5s infinite normal
+}
+
+.ButRegisterAhref {
+    color: white;
+    border: none;
+    text-shadow: 1px 1px 1px purple;
+    font-size: 16px;
+    padding-left: 5px;
+}
+
+.divFour {
+    animation: anime2 1s ease-in-out 1s 1 normal, anime8 5s ease-in-out 4s infinite alternate;
+    width: 100%;
+    height: 10%;
+    opacity: 0.2;
+    padding: 5%;
+    margin-left: 46%;
+    margin-top: 5%;
+    z-index: 0;
+    position: fixed;
+    background: #1d2534;
+}
+
+.divHomeText {
+    z-index: 1;
+    opacity: 1;
+    position: fixed;
+    margin-top: 6%;
+    margin-left: 50%
+}
+
+.H3divHomeText {
+    color: white;
+    border: none;
+    font-size: 30px;
+    text-shadow: 1px 1px 1px purple, -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+}
+
+
+/*login style*/
+
+.divUserAndPassword {
+    margin-left: 20px;
+    position: relative;
+    left: 20px;
+    overflow-x: hidden
+}
+
+.spandivUserAndPassword {
+    color: white;
+    border-bottom: 1.5px dotted white;
+    padding-bottom: 1px;
+}
+
+.AdivUserAndPassword {
+    border-left: 2px dotted #5ddeea;
+    padding-left: 5px;
+}
+#btnLogin {
+    background-color: white; 
+	color: black;
+	padding: 15px 32px; 
+	border: 2px solid #06022B;	
+	position: relative;
+}
+#btnLogin:hover {
+    background-color: #06022B;
+	color: white;
+	border: 2px solid white;
+}
+.DivLoginForm{
+	padding:7px;
+	background-color:white;
+	border-style: solid;
+	border-color: gray black black black;
+	border-radius: 5px;
+	box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+}
+.BtnRegisterForm {
+	color:#856969;
+	padding-left:7px;
+	background-color:white;
+	border-style: solid;
+	border-color: gray black black black;
+	border-radius: 5px;
+	box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+	margin-bottom:5px;
+
+}
+.DivFormRegister{
+	margin-top:20px;
+	width:63%;color:black;
+	padding-left:7px;
+	background-color:white;
+	border-style: solid;
+	border-color: gray black black black;
+	border-radius: 5px;
+	box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+}
+.AtagFormRegister{
+	border-left:2px dotted #5ddeea;
+	padding-left:5px
+}
+.SpanFormRegister{
+	color:white;
+	border-bottom:1.5px dotted white;
+	padding-bottom:1px;
+}
+.DivFormRegisterB{
+	margin-left: 20px;
+	position:relative;
+	left:20px;overflow-x:hidden;
+}

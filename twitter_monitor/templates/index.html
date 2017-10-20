@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-   {% block title %}<title>MoniTwi</title>{% endblock %}
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <script src="https://code.highcharts.com/highcharts.src.js"></script>
-   <script src="http://code.highcharts.com/modules/broken-axis.src.js"></script>
-   {% block head%}
-   {% endblock %}
-   {% load staticfiles %}
-   <link rel="stylesheet"  type="text/css" href="{% static 'livros/style.css' %}" />
+    {% block title %}
+    <title>MoniTwi</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="http://code.highcharts.com/modules/broken-axis.src.js"></script>
+    {% block head%} {% endblock %} {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Style/style.css' %}" />
 </head>
 {% load static %}
-<body class = "bodyhome">
- <div class  =  "divOne">
- </div>
-    <div class = "divTitle">
-          <h2 class =" h2DivTitle">MoniTwi</h2>
+
+<body class="bodyhome">
+    <div class="divOne">
     </div>
-<div class = "divTwo">
-</div>
+    <div class="divTitle">
+        <h2 class=" h2DivTitle">MoniTwi</h2>
+    </div>
+    <div class="divTwo">
+    </div>
     <div class="but">
-          <a href="{% url 'monitoramento:monitoramentos' %}" class = "butAhref">Entrar</a>
+        <a href="{% url 'monitoramento:monitoramentos' %}" class="butAhref">Entrar</a>
     </div>
-<div class = "divThree">
-</div>
-    <div class="butEntrar" >
-         <a href="{% url 'monitoramento:cadastro' %}" class = "butEntrarAhref">Cadastrar</a>
+    <div class="divThree">
     </div>
-<div clas = "divFour">
-</div>
-    <div class ="divHomeText">
-         <h3 class = "H3divHomeText">Descubra, classifique e monitore mensagens do Twitter.</h3>
-   </div>
+    <div class="ButRegister">
+        <a href="{% url 'monitoramento:cadastro' %}" class="ButRegisterAhref">Cadastrar</a>
+    </div>
+    <div clas="divFour">
+    </div>
+    <div class="divHomeText">
+        <h3 class="H3divHomeText">Descubra, classifique e monitore mensagens do Twitter.</h3>
+    </div>
 
 
 </body>
+
 </html>
