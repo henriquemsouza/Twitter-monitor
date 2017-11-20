@@ -22,31 +22,35 @@
             <div class="col-sm-2">
                 {% block sidebar2 %} {% endblock %} {% block sidebar %}
                 <ul class="sidebar-nav">
-                    <li style="text-align:center;font-family:'Calibri'"><a>MoniTwi</a></li>
+                    <li class="LiBaseGeneric"><a>MoniTwi</a></li>
                     </br>
                 </ul>
                 <ul class="sidebar-nav">
                     {% if user.is_authenticated %}
-                    <li style="margin:7px">Logado: {{user.get_username }}</li>
-                    <li style="margin:7px"><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
-                    <li style="margin:7px"><a href="{% url 'monitoramento:monitoramento_create' %}">Criar Monitoramento</a></li>
-                    <li style="margin:7px"><a href="{% url 'monitoramento:schema' %}">API</a></li>
-                    </br>
-                    <li style="margin:7px"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+                    <li class="LiBaseGenericMargin">Logado: {{user.get_username }}</li>
+                    <li class="LiBaseGenericMargin"></li><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
+                    <li class="LiBaseGenericMargin"></li><a href="{% url 'monitoramento:monitoramento_create' %}">Criar Monitoramento</a></li>
+                    <li class="LiBaseGenericMargin"></li><a href="{% url 'monitoramento:schema' %}">API</a></li>
+                       </br>
+                    <li class="LiBaseGenericMargin"></li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
                     {% if monitoramento_list %}
                 </ul>
                 <ul class="sidebar-nav">
                     <form action="{% url 'monitoramento:coletar' %}" method="post">
                         {% for monitoramento in object_list %}
 
-                        <li style="margin:7px"><a style="margin:7px;position:absolute;right:10%;padding:7px;background-color:white;border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);color:black;font-family:'Calibri';padding:3px"
-                                href="{% url 'monitoramento:monitoramento_detail' pk=monitoramento.pk filtro=0 %}"> {{ monitoramento.palavra }}</a>
-                            <input style="width:40px;height:40px;position:relative;box-shadow: 1px 1px 1px purple;font-family:'Calibri';font:button;margin:7px" name="palavra" type="image" src="https://github.com/guilhermegff/images/blob/master/cubo3.jpg?raw=true" value="{{ monitoramento.pk }}"></li>
+                        <li class="LiBaseGenericMargin" ><a class="aLiBaseGeneric" href="{% url 'monitoramento:monitoramento_detail' pk=monitoramento.pk filtro=0 %}"
+                            > {{ monitoramento.palavra }}</a>
+                            <input class="inputBaseGenric" name="palavra" type="image" src="https://github.com/guilhermegff/images/blob/master/cubo3.jpg?raw=true" value="{{ monitoramento.pk }}"></li>
                         {% endfor %} {% endif %}
                 </ul>
                 </form>
                 {% else %}
-                <li style="margin:7px"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                <ul class="sidebar-nav">
+                  <li class="LiBaseGeneric"></li><a href="{% url 'login' %}?next={{ request.path }}"> Login</a></li>
+                  <li class="LiBaseGenericMargin"></li><a href="{% url 'monitoramento:cadastro' %}"> Cadastrar</a></li>
+                </ul>
+                <br>
                 {% endif %}
                 </ul>
                 {% endblock %}

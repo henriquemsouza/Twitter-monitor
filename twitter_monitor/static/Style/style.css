@@ -295,15 +295,26 @@ body {
 	box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
 }
 .BtnRegisterForm {
-	color:#856969;
+	/* color:#856969;
 	padding-left:7px;
 	background-color:white;
 	border-style: solid;
 	border-color: gray black black black;
 	border-radius: 5px;
 	box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
-	margin-bottom:5px;
+    margin-bottom:5px; */
+    background-color: white; 
+	color: black;
+	padding: 15px 32px; 
+	border: 2px solid #06022B;	
+	position: relative;
 
+}
+
+.BtnRegisterForm:hover {
+    background-color: #06022B;
+	color: white;
+	border: 2px solid white;
 }
 .DivFormRegister{
 	margin-top:20px;
@@ -328,4 +339,133 @@ body {
 	margin-left: 20px;
 	position:relative;
 	left:20px;overflow-x:hidden;
+}
+.LiBaseGeneric{
+    text-align:center;
+    font-family:'Calibri';
+}
+.LiBaseGenericMargin{
+    margin:7px;
+   
+}
+.aLiBaseGeneric{
+    margin:7px;
+    position:absolute;
+    right:10%;
+    padding:7px;
+    background-color:white;
+    border-style: solid;
+    border-color: gray black black black;
+    border-radius: 5px;
+    box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+    color:black;
+    font-family:'Calibri';
+    padding:3px
+}
+.inputBaseGenric{
+    width:40px;
+    height:40px;
+    position:relative;
+    box-shadow: 1px 1px 1px purple;
+    font-family:'Calibri';
+    font:button;
+    margin:7px;
+}
+.liGraficView{
+    margin:7px;
+}
+.inputGraficView{
+    color:black;
+    padding-left:7px;
+    background-color:rgba(220, 217, 227, 0.68);
+    border-style: solid;
+    border-color: gray black black black;
+    border-radius: 5px;
+    box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+}
+.inputGraficView:hover{
+    background-color: #06022B;
+	color: white;
+	border: 2px solid white;
+
+}
+.aGraficView{
+    text-decoration:none; 
+    color:black;
+    font-weight: bold;
+}
+.aGraficView:hover{    
+	color:blue;
+}
+.liGraficViewTitle{
+    margin-left:7px;
+    color: rgb(31, 21, 21);
+    font-weight: bold;
+}
+.liMonitoDetail{
+    margin:7px;
+}
+.inputTagMonitoDetail{
+    color:black;
+    padding-left:7px;
+    background-color:rgba(220, 217, 227, 0.68);
+    border-style: solid;
+    border-color: gray black black black;
+    border-radius: 5px;
+    box-shadow: 1px 0.5px 2px rgba(153, 79, 232, 0.4), -2px 1px 2px rgba(153, 79, 232, 0.4), 1px 1px 2px rgba(153, 79, 232, 0.4);
+    width:120px;
+    margin:7px;
+}
+.inputApplyMonitoDetail{
+    color:black;
+    padding-left:7px;
+    background-color:rgba(220, 217, 227, 0.68);
+    border-style: solid;
+    border-color: gray black black black;
+    border-radius: 5px;
+    box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+}
+.inputApplyMonitoDetail:hover{
+    background-color: #06022B;
+	color: white;
+	border: 2px solid white;
+}
+.inputFilterMonitoDetail{
+    color:black;
+    padding-left:7px;
+    background-color:rgba(220, 217, 227, 0.68);
+    border-style: solid;
+    border-color: gray black black black;
+    border-radius: 5px;
+    box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+}
+.inputFilterMonitoDetail:hover{
+    background-color: #06022B;
+	color: white;
+	border: 2px solid white;
+}
+.ifObjectlistMonitoDetail{
+    background:#eff0f0;
+    padding:10px;
+    margin:0 auto;
+    margin-top:21px;
+    margin-left:40px;
+    position:relative;
+    box-shadow: 2px 1.5px 2px rgba(93, 222, 234, 0.5), -1px 1px 2px rgba(93, 222, 234, 0.5), 2px 1.5px 2px rgba(93, 222, 234, 0.5);
+    border-style:solid;
+    border-color:gray black black black;
+    border-width:2px;
+    border-radius: 5px;
+    overflow:hidden;
+}
+.DivMoniDetail{
+    background:white;
+    box-shadow: 1px 1px 2px black;
+    padding:1px;
+    margin-top:1px;
+    border-style:outset;
+    border-color:lightgrey black black black;
+    border-width:1px;
+    border-radius: 5px;
+    overflow:hidden;
 }
