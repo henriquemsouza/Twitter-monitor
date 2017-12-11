@@ -4,14 +4,13 @@
 
 <h1>Deletar Monitoramento</h1></br>
 
-<div class="DivConfirmDelete">
-    <span class="SpanConfirmDelete">
-            <a class="aconfirmDelete">Tem certeza que deseja excluir o monitoramento: {{ monitoramento.palavra }}</a>
-
+<div>
+            <h1 >Tem certeza que deseja excluir o monitoramento: {{ monitoramento.palavra }}</h1> 
+</div>
 <form action="" method="POST">
   {% csrf_token %}
   </br>
-  <input class="InputConfirmDel" type="submit" action="" value="Sim, excluir."/>
+  <input id="btnLogin" type="submit" action="" value="Sim, excluir."/>
 </form>
 </div>
 
