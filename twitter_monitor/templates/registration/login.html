@@ -11,15 +11,14 @@
     </span>
 </div>
 {% if form.erros %}
-<p style="color:white" >Your username and password didn't match. Please try again.</p>
+<p class="pLogin" >Your username and password didn't match. Please try again.</p>
 {% endif %}
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p style="color:white" >Your account doesn't have access to this page. To proceed,
-    please login with and account that has access.</p>
+    <p class="pLogin" >Your account doesn't have access to this page. To proceed, please login with and account that has access.</p>
     {% else %}
-   </br> <p style="color:white" >Please login to see this page.</p></br>
+   </br> <p class="pLogin" >Please login to see this page.</p></br>
     {% endif %}
 {% endif %}
 
@@ -35,7 +34,7 @@
   <td>{{ form.password }}</td>
 </div></br>
 
-<div style="background-color:#1d2534">
+<div class="DivLoginBack">
   <input id="btnLogin" type="submit" value="Login" />
   <input type="hidden" name="next" value="" />
 </div>

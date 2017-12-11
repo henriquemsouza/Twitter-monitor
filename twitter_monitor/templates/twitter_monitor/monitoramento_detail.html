@@ -5,15 +5,25 @@
 
 {% block sidebar %}
       <ul class="sidebar-nav">
-	  <li  style="margin-left:7px"><a>Monitoramento: </br>{{ atual.palavra }}</a></li>
+	  <li  class="liMonitoDetail">
+		  <a>Monitoramento: </br>{{ atual.palavra }}</a>
+	  </li>
       </ul>
       <ul class="sidebar-nav">	
           <li sclass="liMonitoDetail">Logado: {{ usuario }}</li>
-	  <li class="liMonitoDetail"><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
-	  <li class="liMonitoDetail"><a href="{% url 'monitoramento:Grafico' pk %}">Graficos</a></li>
-	  <li class="liMonitoDetail"><a href="{% url 'monitoramento:monitoramento_delete' pk %}">Deletar Monitoramento</a></li>
+	  <li class="liMonitoDetail">
+		  <a href="{% url 'monitoramento:monitoramentos' %}">Home</a>
+	  </li>
+	  <li class="liMonitoDetail">
+		  <a href="{% url 'monitoramento:Grafico' pk %}">Graficos</a>
+	  </li>
+	  <li class="liMonitoDetail">
+		  <a href="{% url 'monitoramento:monitoramento_delete' pk %}">Deletar Monitoramento</a>
+	  </li>
 	  </br>
-          <li class="liMonitoDetail"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+          <li class="liMonitoDetail">
+			  <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+		  </li>
       </ul>
       <form action="{% url 'monitoramento:aplicar' pk %}" method="post">
       {% csrf_token %}
@@ -82,10 +92,15 @@
 		 <p>
 			 <span style="{%if it.quali == 'POS'%}background-color:rgba(34, 201, 8, 0.44){%elif it.quali == 'NEU' %}background-color:#fadb6b{% elif it.quali == 'NEG' %}background-color:#f95353{% else %} background-color:white{% endif %} ;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px"> Sentimento: {{ it.quali }}
 			 </span>
-			 <span style="background-color:white;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px;margin-left:1%">{{ it.data_pub }}
-			</span>
-		  </p></li><li style="padding:5px"><p><span style="background-color:oldlace;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius:5px;padding:2px">@{{ it.nome_twi }}</span><span style="background-color:#b488ce;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px;margin-left:7px;{%if it.tag <= 1 %}visibility:hidden{% else %}visibilty:visible{% endif %}">{{ it.tag }}</span></p></li>
-	<li style="padding:5px;margin:7px"><p style="font-family:'calibri'">{{ it.texto }}</p></li>
+			 <span class="spanDetail">{{ it.data_pub }}</span>
+		  </p></li>
+		  <li class="LiMoniDetail5"><p>
+			  <span class="SpanDetailMoniDetail">@{{ it.nome_twi }}</span>
+			  <span style="background-color:#b488ce;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px;margin-left:7px;{%if it.tag <= 1 %}visibility:hidden{% else %}visibilty:visible{% endif %}">{{ it.tag }}</span>
+		  </p></li>
+	<li class="LiMoniDetail5and7">
+		<p class="pMoniDetail">{{ it.texto }}</p>
+	</li>
 	    <li>		  
     		   <input class="liMonitoDetail" type="checkbox" name="choice" id="1" value= "{{ it.id }}"/>
     	  	   <label style="font-family:'calibri';margin:1px">Selecionar</label><br /></li>
@@ -93,16 +108,16 @@
 	{% endfor %}    	
     </ul>
     </form>
-    <div style="margin-left: 20px;position:relative;left:20px" class="pagination">
-    <span style="color:white;border-bottom:1.5px dotted white;padding-bottom:1px"class="step-links">
+    <div id="DivMonidetailPagination" class="pagination">
+    <span id="SpanPagination" class="step-links">
         {% if object_list.has_previous %}
-            <a style="border-left:2px dotted #5ddeea;padding-left:5px" href="?page={{ object_list.previous_page_number }}">Anterior</a>
+            <a class="AdivPagination" href="?page={{ object_list.previous_page_number }}">Anterior</a>
         {% endif %}
-    <span style="color:white;border-left:2px dotted purple;padding-left:5px" class="current">
+    <span id="SpanPaginationPurple" class="current">
             Pagina {{ object_list.number }} de {{ object_list.paginator.num_pages }}
     <span class="step-links">
 	{% if object_list.has_next %}
-            <a style="border-left:2px dotted #5ddeea;margin-left:5px;padding-left:5px" href="?page={{ object_list.next_page_number }}"> Proxima</a>
+            <a class="AdivPagination" href="?page={{ object_list.next_page_number }}"> Proxima</a>
         {% endif %}
         
         </span>

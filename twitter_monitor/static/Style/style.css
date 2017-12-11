@@ -255,7 +255,7 @@ body {
 }
 
 
-/*login style*/
+
 
 .divUserAndPassword {
     margin-left: 20px;
@@ -294,15 +294,15 @@ body {
 	border-radius: 5px;
 	box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
 }
+.DivLoginBack{
+    background-color:#1d2534;
+}
+.pLogin{
+    color:white;
+}
+
 .BtnRegisterForm {
-	/* color:#856969;
-	padding-left:7px;
-	background-color:white;
-	border-style: solid;
-	border-color: gray black black black;
-	border-radius: 5px;
-	box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
-    margin-bottom:5px; */
+
     background-color: white; 
 	color: black;
 	padding: 15px 32px; 
@@ -468,4 +468,101 @@ body {
     border-width:1px;
     border-radius: 5px;
     overflow:hidden;
+}
+.LiMoniDetail5{
+    padding:5px;
+}
+.spanDetail{
+    background-color:white;
+    font-family:'calibri';
+    box-shadow: 2px 1.5px 2px black;
+    border-style:solid;
+    border-color:black;
+    border-width:1px;
+    border-radius: 5px;
+    padding:2px;
+    margin-left:1%;
+
+}
+.SpanDetailMoniDetail{
+    background-color:oldlace;
+    font-family:'calibri';
+    box-shadow: 2px 1.5px 2px black;
+    border-style:solid;
+    border-color:black;
+    border-width:1px;
+    border-radius:5px;
+    padding:2px;
+}
+.LiMoniDetail5and7{
+    padding:5px;
+    margin:7px;
+}
+.pMoniDetail{
+    font-family:'calibri';
+}
+#DivMonidetailPagination{
+    margin-left: 20px;
+    position:relative;
+    left:20px;
+}
+#SpanPagination{
+    color:white;
+    border-bottom:1.5px dotted white;
+    padding-bottom:1px;
+}
+.AdivPagination{
+    border-left:2px dotted #5ddeea;
+    padding-left:5px;
+}
+#SpanPaginationPurple{
+    color:white;
+    border-left:2px dotted purple;
+    padding-left:5px;
+}
+.DivConfirmDelete{
+    margin-left: 20px;
+    position:relative;
+    left:20px;
+}
+.SpanConfirmDelete{
+    color:white;
+    border-bottom:1.5px dotted white;
+    padding-bottom:1px;
+}
+.aconfirmDelete{
+    border-left:2px dotted #5ddeea;
+    padding-left:5px;
+}
+.InputConfirmDel{
+    color:black;
+    padding-left:7px;
+    background-color:white;
+    border-style: solid;
+    border-color: gray black black black;
+    border-radius: 5px;
+    box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+}
+.aMoniForm{
+    border-left:2px dotted #5ddeea;
+    padding-left:5px;
+    color: white;
+   
+}
+.SpanMoniForm{
+    color:white;
+    border-bottom:1.5px dotted white;
+    padding-bottom:1px;
+    background-color: white;
+}
+#TableMoniForm{
+    color:black;
+    padding-left:7px;
+    background-color:white;
+    border-style: solid;
+    border-color: gray black black black;
+    border-radius: 5px;
+    box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+    position:absolute;
+    left:-56px;
 }
