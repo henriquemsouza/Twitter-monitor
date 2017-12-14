@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 import datetime
 from chartit import DataPool, Chart
 
-    #Views com as definições das queries para buscar dados que irão popular os gráficos e configurações de aparência dos gráficos
+#Views com as definições das queries para buscar dados que irão popular os gráficos e configurações de aparência dos gráficos
 
 def todos_dados():
 
@@ -60,23 +60,18 @@ def todos_dados():
 		 {'Total':'id'}]}
 	     ])
 
-	cht3 = Chart(datasource=info,series_options=
-	[{'options':{'type':'column'}, 'terms':{'data_pub': ['Neutro'], 'data_pub2':['Negativo'],'data_pub3':['Positivo']}},{'options':{'type':'line','color':'rgba(55, 	227, 43, 0.6)'}, 'terms':{'data_pub4': ['Mensagens']}},{'options':{'type': 'pie', 'colors':['rgba(170, 0, 255, 0.56)','rgba(145, 75, 180, 0.56)','rgba(212, 0, 		255, 0.6)']}, 'terms':{'quali': ['Total']}}], chart_options={'animation':{'duration':3000},'colors': ['rgba(15, 51, 255, 0.6)','rgba(112, 134, 255, 0.6)',
-        'rgba(112, 226, 255, 0.6)'],'title': { 'text': 'Total - Total por dia, com sentimento'}, 'tooltip': { 'pointFormat': '{series.name}: <b>{point.y}</b>'}, 'xAxis':
-	{'title':{'text':'Dia'}}, 'yAxis':{'allowDecimals': False, 'title':{'text':'Mensagens'}},'plotOptions':{'line':{'dataLabels':{'enabled': False}}},'plotOptions':
-	{'column':{'dataLabels':{'enabled': False}}},'plotOptions':{'pie':{'center':[100,80],'size':100,'allowPointSelect': True, 'cursor':'pointer', 'dataLabels':
-	{'enabled': True, 'format': '<b>{point.name}</b>: {point.percentage:.1f}%'}}}})
+	cht3 = Chart(datasource=info,series_options=[{'options':{'type':'column'}, 'terms':{'data_pub': ['Neutro'], 'data_pub2':['Negativo'],'data_pub3':['Positivo']}},{'options':{'type':'line','color':'rgba(55, 	227, 43, 0.6)'}, 'terms':{'data_pub4': ['Mensagens']}},{'options':{'type': 'pie', 'colors':['rgba(170, 0, 255, 0.56)','rgba(145, 75, 180, 0.56)','rgba(212, 0, 255, 0.6)']}, 'terms':{'quali': ['Total']}}], chart_options={'animation':{'duration':3000},'colors': ['rgba(15, 51, 255, 0.6)','rgba(112, 134, 255, 0.6)', 'rgba(112, 226, 255, 0.6)'],'title': { 'text': 'Total - Total por dia, com sentimento'}, 'tooltip': { 'pointFormat': '{series.name}: <b>{point.y}</b>'}, 'xAxis':{'title':{'text':'Dia'}}, 'yAxis':{'allowDecimals': False, 'title':{'text':'Mensagens'}},'plotOptions':{'line':{'dataLabels':{'enabled': False}}},'plotOptions':{'column':{'dataLabels':{'enabled': False}}},'plotOptions':{'pie':{'center':[100,80],'size':100,'allowPointSelect': True, 'cursor':'pointer', 'dataLabels':{'enabled': True, 'format': '<b>{point.name}</b>: {point.percentage:.1f}%'}}}})
 	return cht3
 
-    #Filtro Mensal
+#Filtro Mensal
 def todos_dados_mensal(monit_id):
 
 	monit_id = monit_id
-	query  = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where data_pub >= current_date - integer '30' and data_pub <= current_date 			and monit_id = %s group by data_pub",[monit_id])
-	query1 = Item.objects.raw("select count(id) as id, quali from twitter_monitor_item where data_pub >= current_date - integer '30' and data_pub <= current_date 			and monit_id = %s group by quali",[monit_id])
-	query2 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEU' AND data_pub >= current_date - integer '30' and data_pub 			<= current_date and monit_id = %s group by data_pub",[monit_id])
-    	query3 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEG' AND data_pub >= current_date - integer '30' and data_pub 			<= current_date and monit_id = %s group by data_pub",[monit_id])
-    	query4 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='POS'AND data_pub >= current_date - integer '30' and data_pub 		<= current_date and monit_id = %s group by data_pub",[monit_id])
+	query  = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+	query1 = Item.objects.raw("select count(id) as id, quali from twitter_monitor_item where data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by quali",[monit_id])
+	query2 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEU' AND data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+    	query3 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEG' AND data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+    	query4 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='POS'AND data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
 
 	info =\
 	DataPool(
@@ -118,25 +113,18 @@ def todos_dados_mensal(monit_id):
 		 {'Total':'id'}]}
 	     ])
 
-	cht4 = Chart(datasource=info,series_options=[{'options':{'type':'column', 'borderWidth': 1,
-            'borderColor': 'rgba(255, 255, 46, 0.6)','borderRadius': 5, 'shadow': True}, 'terms':{'data_pub': ['Neutro'], 'data_pub2':['Negativo'],'data_pub3':
-	    ['Positivo']}},{'options':{'type':'line', 'shadow': True,'color':'rgba(55, 227, 43, 0.6)'}, 'terms':{'data_pub4': ['Mensagens']}},{'options':{'type': 'pie',
-	    'colors':['rgba(170, 0, 255, 0.56)','rgba(145, 75, 180, 0.56)','rgba(212, 0, 255, 0.6)']}, 'terms':{'quali': ['Total']}}], chart_options={'animation':
-	    {'duration':3000},'colors': ['rgba(15, 51, 255, 0.6)','rgba(112, 134, 255, 0.6)','rgba(112, 226, 255, 0.6)'],'title': { 'text': 'Mensal - Total por dia, com 		    sentimento'}, 'tooltip': { 'pointFormat': '{series.name}: <b>{point.y}</b>'}, 'xAxis':{'title':{'text':'Dia'}}, 'yAxis':{'allowDecimals': False, 'title':
-	    {'text':'Mensagens'}},'plotOptions':{'line':{'dataLabels':{'enabled': False}}},'plotOptions':{'column':{'dataLabels':{'enabled': False}}},'plotOptions':
-	    {'pie':{'center':[100,50],'size':70,'allowPointSelect': True, 'cursor':'pointer', 'dataLabels':{'enabled': True, 'distance': 10, 'connectorPadding': 0,
-	    'connectorWidth': 1, 'format': '<b>{point.name}</b>: {point.percentage:.1f}%'}}}})
+	cht4 = Chart(datasource=info,series_options=[{'options':{'type':'column', 'borderWidth': 1, 'borderColor': 'rgba(255, 255, 46, 0.6)','borderRadius': 5, 'shadow': True}, 'terms':{'data_pub': ['Neutro'], 'data_pub2':['Negativo'],'data_pub3':['Positivo']}},{'options':{'type':'line', 'shadow': True,'color':'rgba(55, 227, 43, 0.6)'}, 'terms':{'data_pub4': ['Mensagens']}},{'options':{'type': 'pie','colors':['rgba(170, 0, 255, 0.56)','rgba(145, 75, 180, 0.56)','rgba(212, 0, 255, 0.6)']}, 'terms':{'quali': ['Total']}}], chart_options={'animation':{'duration':3000},'colors': ['rgba(15, 51, 255, 0.6)','rgba(112, 134, 255, 0.6)','rgba(112, 226, 255, 0.6)'],'title': { 'text': 'Mensal - Total por dia, com sentimento'}, 'tooltip': { 'pointFormat': '{series.name}: <b>{point.y}</b>'}, 'xAxis':{'title':{'text':'Dia'}}, 'yAxis':{'allowDecimals': False, 'title':{'text':'Mensagens'}},'plotOptions':{'line':{'dataLabels':{'enabled': False}}},'plotOptions':{'column':{'dataLabels':{'enabled': False}}},'plotOptions':{'pie':{'center':[100,50],'size':70,'allowPointSelect': True, 'cursor':'pointer', 'dataLabels':{'enabled': True, 'distance': 10, 'connectorPadding': 0,'connectorWidth': 1, 'format': '<b>{point.name}</b>: {point.percentage:.1f}%'}}}})
         return cht4
 
-    #Filtro Semanal
+#Filtro Semanal
 def todos_dados_semanal(monit_id):
 
 	monit_id = monit_id
-	query  = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where data_pub >= current_date - integer '7' and data_pub <= current_date 		and monit_id = %s group by data_pub",[monit_id])
-	query1 = Item.objects.raw("select count(id) as id, quali from twitter_monitor_item where data_pub >= current_date - integer '7' and data_pub <= current_date and 			monit_id = %s group by quali",[monit_id])
-	query2 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEU' AND data_pub >= current_date - integer '7' and data_pub 		<= current_date and monit_id = %s group by data_pub",[monit_id])
-    	query3 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEG' AND data_pub >= current_date - integer '7' and data_pub 		<= current_date and monit_id = %s group by data_pub",[monit_id])
-    	query4 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='POS'AND data_pub >= current_date - integer '7' and data_pub 			<= current_date and monit_id = %s group by data_pub",[monit_id])
+	query  = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+	query1 = Item.objects.raw("select count(id) as id, quali from twitter_monitor_item where data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by quali",[monit_id])
+	query2 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEU' AND data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+    	query3 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEG' AND data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+    	query4 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='POS'AND data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
 
 	info =\
 	DataPool(
@@ -178,18 +166,10 @@ def todos_dados_semanal(monit_id):
 		 {'Total':'id'}]}
 	     ])
 
-	cht6 = Chart(datasource=info,series_options=[{'options':{'type':'column', 'borderWidth': 1,
-            'borderColor': 'rgba(255, 255, 46, 0.6)','borderRadius': 5, 'shadow': True}, 'terms':{'data_pub': ['Neutro'], 'data_pub2':['Negativo'],'data_pub3':
-	    ['Positivo']}},{'options':{'type':'line', 'shadow': True,'color':'rgba(55, 227, 43, 0.6)'}, 'terms':{'data_pub4': ['Mensagens']}},{'options':{'type': 'pie',
-	    'colors':['rgba(170, 0, 255, 0.56)','rgba(145, 75, 180, 0.56)','rgba(212, 0, 255, 0.6)']}, 'terms':{'quali': ['Total']}}], chart_options={'animation':
-       	    {'duration':3000},'colors': ['rgba(15, 51, 255, 0.6)','rgba(112, 134, 255, 0.6)','rgba(112, 226, 255, 0.6)'],'title':
-	    { 'text': 'Semanal - Total por dia, com sentimento'}, 'tooltip': { 'pointFormat': '{series.name}: <b>{point.y}</b>'}, 'xAxis':{'title':{'text':'Dia'}},
-	    'yAxis':{'allowDecimals': False, 'title':{'text':'Mensagens'}},'plotOptions':{'line':{'dataLabels':{'enabled': False}}},'plotOptions':{'column':
-	    {'dataLabels':{'enabled': False}}},'plotOptions':{'pie':{'center':[100,50],'size':70,'allowPointSelect': True, 'cursor':'pointer', 'dataLabels':{'enabled':
-	    True, 'distance': 10, 'connectorPadding': 0, 'connectorWidth': 1, 'format': '<b>{point.name}</b>: {point.percentage:.1f}%'}}}})
+	cht6 = Chart(datasource=info,series_options=[{'options':{'type':'column', 'borderWidth': 1,'borderColor': 'rgba(255, 255, 46, 0.6)','borderRadius': 5, 'shadow': True}, 'terms':{'data_pub': ['Neutro'], 'data_pub2':['Negativo'],'data_pub3':['Positivo']}},{'options':{'type':'line', 'shadow': True,'color':'rgba(55, 227, 43, 0.6)'}, 'terms':{'data_pub4': ['Mensagens']}},{'options':{'type': 'pie','colors':['rgba(170, 0, 255, 0.56)','rgba(145, 75, 180, 0.56)','rgba(212, 0, 255, 0.6)']}, 'terms':{'quali': ['Total']}}], chart_options={'animation':{'duration':3000},'colors': ['rgba(15, 51, 255, 0.6)','rgba(112, 134, 255, 0.6)','rgba(112, 226, 255, 0.6)'],'title':  { 'text': 'Semanal - Total por dia, com sentimento'}, 'tooltip': { 'pointFormat': '{series.name}: <b>{point.y}</b>'}, 'xAxis':{'title':{'text':'Dia'}},'yAxis':'allowDecimals': False, 'title':{'text':'Mensagens'}},'plotOptions':{'line':{'dataLabels':{'enabled': False}}},'plotOptions':{'column':    {'dataLabels':{'enabled': False}}},'plotOptions':{'pie':{'center':[100,50],'size':70,'allowPointSelect': True, 'cursor':'pointer', 'dataLabels':{'enabled':True, 'distance': 10, 'connectorPadding': 0, 'connectorWidth': 1, 'format': '<b>{point.name}</b>: {point.percentage:.1f}%'}}}})
         return cht6
 
-    #Filtro com Todos os Itens
+#Filtro com Todos os Itens
 def todos_dados_geral(monit_id):
 
 	monit_id = monit_id
@@ -239,18 +219,10 @@ def todos_dados_geral(monit_id):
 		 {'Total':'id'}]}
 	     ])
 
-	cht7 = Chart(datasource=info,series_options=[{'options':{'type':'column', 'borderWidth': 1,
-            'borderColor': 'rgba(255, 255, 46, 0.6)','borderRadius': 5, 'shadow': True}, 'terms':{'data_pub': ['Neutro'], 'data_pub2':['Negativo'],'data_pub3':
-	    ['Positivo']}},{'options':{'type':'line', 'shadow': True,'color':'rgba(55, 227, 43, 0.6)'}, 'terms':{'data_pub4': ['Mensagens']}},{'options':{'type': 'pie',
-	    'colors':['rgba(170, 0, 255, 0.56)','rgba(145, 75, 180, 0.56)','rgba(212, 0, 255, 0.6)']}, 'terms':{'quali': ['Total']}}], chart_options={'animation':
-	    {'duration':3000},'colors': ['rgba(15, 51, 255, 0.6)','rgba(112, 134, 255, 0.6)','rgba(112, 226, 255, 0.6)'],'title':
-	    { 'text': 'Total - Total por dia, com sentimento'}, 'tooltip': { 'pointFormat': '{series.name}: <b>{point.y}</b>'}, 'xAxis':{'title':{'text':'Dia'}},
-	    'yAxis':{'allowDecimals': False, 'title':{'text':'Mensagens'}},'plotOptions':{'line':{'dataLabels':{'enabled': False}}},'plotOptions':{'column':
-	    {'dataLabels':{'enabled': False}}},'plotOptions':{'pie':{'center':[100,50],'size':70,'allowPointSelect': True, 'cursor':'pointer', 'dataLabels':{'enabled':
-	    True, 'distance': 10, 'connectorPadding': 0, 'connectorWidth': 1, 'format': '<b>{point.name}</b>: {point.percentage:.1f}%'}}}})
+	cht7 = Chart(datasource=info,series_options=[{'options':{'type':'column', 'borderWidth': 1,'borderColor': 'rgba(255, 255, 46, 0.6)','borderRadius': 5, 'shadow': True}, 'terms':{'data_pub': ['Neutro'], 'data_pub2':['Negativo'],'data_pub3':['Positivo']}},{'options':{'type':'line', 'shadow': True,'color':'rgba(55, 227, 43, 0.6)'}, 'terms':{'data_pub4': ['Mensagens']}},{'options':{'type': 'pie','colors':['rgba(170, 0, 255, 0.56)','rgba(145, 75, 180, 0.56)','rgba(212, 0, 255, 0.6)']}, 'terms':{'quali': ['Total']}}], chart_options={'animation': {'duration':3000},'colors': ['rgba(15, 51, 255, 0.6)','rgba(112, 134, 255, 0.6)','rgba(112, 226, 255, 0.6)'],'title':{ 'text': 'Total - Total por dia, com sentimento'}, 'tooltip': { 'pointFormat': '{series.name}: <b>{point.y}</b>'}, 'xAxis':{'title':{'text':'Dia'}},'yAxis':{'allowDecimals': False, 'title':{'text':'Mensagens'}},'plotOptions':{'line':{'dataLabels':{'enabled': False}}},'plotOptions':{'column':{'dataLabels':{'enabled': False}}},'plotOptions':{'pie':{'center':[100,50],'size':70,'allowPointSelect': True, 'cursor':'pointer', 'dataLabels':{'enabled':True, 'distance': 10, 'connectorPadding': 0, 'connectorWidth': 1, 'format': '<b>{point.name}</b>: {point.percentage:.1f}%'}}}})
         return cht7
 
-    #View com a definição das queries para buscar dados que irão popular a linha que compõe o gráfico com linha e configuração da aparência da linha
+#View com a definição das queries para buscar dados que irão popular a linha que compõe o gráfico com linha e configuração da aparência da linha
 def dados_linha():
 
     	query1 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item group by data_pub")
@@ -264,10 +236,10 @@ def dados_linha():
 		 {'Mensagens':'id',}]}
 	     ])
 
-    	cht = Chart(datasource=info, series_options=[{'options':{'type': 'line', 'stacking': False}, 'terms':{'data_pub': ['Mensagens']}}], chart_options={'title': 		    { 'text': 'Total por dia'}, 'xAxis':{'title':{'text':'Dia'}}, 'yAxis':{'allowDecimals': False, 'title':{'text':'Mensagens'}}})
+    	cht = Chart(datasource=info, series_options=[{'options':{'type': 'line', 'stacking': False}, 'terms':{'data_pub': ['Mensagens']}}], chart_options={'title':    { 'text': 'Total por dia'}, 'xAxis':{'title':{'text':'Dia'}}, 'yAxis':{'allowDecimals': False, 'title':{'text':'Mensagens'}}})
         return cht
 
-    #View com definição de queries e aparência para gráfico em coluna
+#View com definição de queries e aparência para gráfico em coluna
 def dados_coluna():
 
 	query2 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEU' group by data_pub")
@@ -299,13 +271,10 @@ def dados_coluna():
 		 {'Positivo':'id'}]},
 	     ])
 
-    	cht1 = Chart(datasource=info, series_options=[{'options':{'type': 'column', 'stacking': False}, 'terms':{'data_pub': ['Neutro'], 'data_pub2':['Negativo'],
-	     'data_pub3':['Positivo']}}], chart_options={'animation':{'duration':3000}, 'colors':['rgba(213, 10, 7, 0.71)','rgba(16, 203, 194, 0.71)',
-	     'rgba(150, 203, 16, 0.71)'],'title': { 'text': 'Total por dia, com sentimento'}, 'xAxis':{'title':{'text':'Dia'}}, 'yAxis':{'allowDecimals': False, 'title':
-	     {'text':'Mensagens'}}})
+    	cht1 = Chart(datasource=info, series_options=[{'options':{'type': 'column', 'stacking': False}, 'terms':{'data_pub': ['Neutro'], 'data_pub2':['Negativo'],'data_pub3':['Positivo']}}], chart_options={'animation':{'duration':3000}, 'colors':['rgba(213, 10, 7, 0.71)','rgba(16, 203, 194, 0.71)','rgba(150, 203, 16, 0.71)'],'title': { 'text': 'Total por dia, com sentimento'}, 'xAxis':{'title':{'text':'Dia'}}, 'yAxis':{'allowDecimals': False, 'title':{'text':'Mensagens'}}})
         return cht1
 
-    #View com a definição e configuração do gráfico em formato pie
+#View com a definição e configuração do gráfico em formato pie
 def dados_pizza():
 
     	query1 = Item.objects.raw("select count(id) as id, quali from twitter_monitor_item group by quali")
@@ -322,18 +291,14 @@ def dados_pizza():
 		 'id']}
 	     ])
 
-    	cht2 = Chart(datasource=info, series_options=[{'options':{'type': 'pie', 'stacking': False, 'plotBackgroundColor': 'null', 'plotBorderWidth': 'null',
-	     'plotShadow': False}, 'terms':{'quali': ['id']}}], chart_options={'animation':{'duration':3000}, 'colors':['rgba(213, 10, 7, 0.71)',
-	     'rgba(16, 203, 194, 0.71)','rgba(150, 203, 16, 0.71)'],'title': { 'text': 'Total por dia, com sentimento'}, 'tooltip': { 'pointFormat':
-	     '{series.name}: <b>{point.percentage:.1f}%</b>'}, 'plotOptions':{'pie':{'allowPointSelect': True, 'cursor':'pointer', 'dataLabels':{'enabled':
-	     True, 'format': '<b>{point.name}</b>: {point.percentage:.1f}%', 'style': {'color': '(Highcharts.theme && Highcharts.theme.contrastTextColor)'}}}}})
+    	cht2 = Chart(datasource=info, series_options=[{'options':{'type': 'pie', 'stacking': False, 'plotBackgroundColor': 'null', 'plotBorderWidth': 'null','plotShadow': False}, 'terms':{'quali': ['id']}}], chart_options={'animation':{'duration':3000}, 'colors':['rgba(213, 10, 7, 0.71)','rgba(16, 203, 194, 0.71)','rgba(150, 203, 16, 0.71)'],'title': { 'text': 'Total por dia, com sentimento'}, 'tooltip': { 'pointFormat':'{series.name}: <b>{point.percentage:.1f}%</b>'}, 'plotOptions':{'pie':{'allowPointSelect': True, 'cursor':'pointer', 'dataLabels':{'enabled':True, 'format': '<b>{point.name}</b>: {point.percentage:.1f}%', 'style': {'color': '(Highcharts.theme && Highcharts.theme.contrastTextColor)'}}}}})
     	return cht2
 
-    #View com definição e configuração do gráfico em formato barra horizontal
+#View com definição e configuração do gráfico em formato barra horizontal
 def dados_barra(usuario_id):
 
 	usuario_id = usuario_id
-        query = Item.objects.raw('SELECT count(li.id) as id, lm.palavra as monitoramento FROM twitter_monitor_item li INNER JOIN twitter_monitor_monitoramento lm ON 			li.monit_id = lm.id WHERE lm.usuario_id= %s GROUP BY lm.id', [usuario_id])
+        query = Item.objects.raw('SELECT count(li.id) as id, lm.palavra as monitoramento FROM twitter_monitor_item li INNER JOIN twitter_monitor_monitoramento lm ON li.monit_id = lm.id WHERE lm.usuario_id= %s GROUP BY lm.id', [usuario_id])
 	info =\
 	DataPool(
 	    series=
@@ -346,7 +311,5 @@ def dados_barra(usuario_id):
 		{'Palavra': 'monitoramento'}]}
 	     ])
 
-    	cht5 = Chart(datasource=info, series_options=[{'options':{'type': 'bar', 'maxPointWidth': 25, 'stacking': False}, 'terms':{'Palavra': ['Total']}}],
-	     chart_options={'animation':{'duration':3000}, 'colors':['#ff8e24'],'title': { 'text': 'Total por monitoramento'}, 'xAxis':{'title':{'text':'Palavra'}},
-	     'yAxis':{'allowDecimals': False, 'title':{'text':'Total'}}})
+    	cht5 = Chart(datasource=info, series_options=[{'options':{'type': 'bar', 'maxPointWidth': 25, 'stacking': False}, 'terms':{'Palavra': ['Total']}}],chart_options={'animation':{'duration':3000}, 'colors':['#ff8e24'],'title': { 'text': 'Total por monitoramento'}, 'xAxis':{'title':{'text':'Palavra'}},'yAxis':{'allowDecimals':False, 'title':{'text':'Total'}}})
         return cht5
