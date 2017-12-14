@@ -17,8 +17,8 @@ from chartit import DataPool, Chart
 from got import *
 from .graficos import todos_dados_geral, todos_dados_mensal, todos_dados_semanal, dados_barra
 
-    def index(request):
-	    return render( request,'index.html')
+def index(request):
+    return render( request,'index.html')
 
     class MonitoramentoListView(LoginRequiredMixin, generic.ListView):
         model = Monitoramento
@@ -39,33 +39,33 @@ from .graficos import todos_dados_geral, todos_dados_mensal, todos_dados_semanal
 
 from django.contrib.auth.decorators import login_required
 
-    @login_required #As views com este decorador só podem ser acessadas por usuários logados.
-    @csrf_exempt
-    def GraficoView(request, pk):
-        filtro = request.POST.get('acao')
-        monit_id = int(pk)
-        usuario = None
-        usuario_cod = None
-        monitoramento_atual = None
-        atuais_id = []
-        if request.user.is_authenticated():
-	    usuario_cod = request.user.pk
-	    usuario = request.user.username	
-	    monitoramento_atual = Monitoramento.objects.filter(usuario=usuario_cod)
-	    monitoramento_atual = monitoramento_atual.values()
-	    for monitor in monitoramento_atual: 	    
-	        atuais_id.append(monitor.get('id'))
-	    if(monit_id not in atuais_id):
-	        return HttpResponseRedirect(reverse('monitoramento:monitoramentos'))
-        monitoramento_atual = Monitoramento.objects.get(id=monit_id)
+#    @login_required #As views com este decorador só podem ser acessadas por usuários logados.
+    #@csrf_exempt
+def GraficoView(request, pk):
+    filtro = request.POST.get('acao')
+    monit_id = int(pk)
+    usuario = None
+    usuario_cod = None
+    monitoramento_atual = None
+    atuais_id = []
+    if request.user.is_authenticated():
+        usuario_cod = request.user.pk
+        usuario = request.user.username
+        monitoramento_atual = Monitoramento.objects.filter(usuario=usuario_cod)
+        monitoramento_atual = monitoramento_atual.values()
+    for monitor in monitoramento_atual:
+        atuais_id.append(monitor.get('id'))
+    if(monit_id not in atuais_id):
+        return HttpResponseRedirect(reverse('monitoramento:monitoramentos'))
+    monitoramento_atual = Monitoramento.objects.get(id=monit_id)
 
-        #Seleção dos gráficos por tipo de filtro
-        if(filtro == "por_mes"):
-    	    cb = todos_dados_mensal(monit_id) 
-        elif(filtro == "por_sem"):
-	    cb = todos_dados_semanal(monit_id)  	
-        else:
-	    cb = todos_dados_geral(monit_id)
+    #Seleção dos gráficos por tipo de filtro
+    if(filtro == "por_mes"):
+	    cb = todos_dados_mensal(monit_id)
+    elif(filtro == "por_sem"):
+        cb = todos_dados_semanal(monit_id)
+    else:
+        cb = todos_dados_geral(monit_id)
         return render_to_response('twitter_monitor/GraficoView.html', {'chart_list': cb, 'monit_id': pk, 'usuario':usuario, 'atual': monitoramento_atual})
 
 
@@ -81,10 +81,10 @@ from django.contrib.auth.decorators import login_required
         atuais_id = []
         if request.user.is_authenticated():
 	    usuario_cod = request.user.pk
-	    usuario = request.user.username	
+	    usuario = request.user.username
 	    monitoramento_atual = Monitoramento.objects.filter(usuario=usuario_cod)
 	    monitoramento_atual = monitoramento_atual.values()
-	    for monitor in monitoramento_atual: 	    
+	    for monitor in monitoramento_atual:
 	        atuais_id.append(monitor.get('id'))
 	    if(monit_id not in atuais_id):
 	        return HttpResponseRedirect(reverse('monitoramento:monitoramentos'))
@@ -97,7 +97,7 @@ from django.contrib.auth.decorators import login_required
 	    item_list = list(Item.objects.raw("select * from twitter_monitor_item where data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id 			        = %s group by data_pub, id",[monit_id]))
         else:
 	    item_list = list(Item.objects.filter(monit_id=monit_id))
-    
+
         monitoramento = len(item_list)
         paginator = Paginator(item_list, 7)
         page = request.GET.get('page')
@@ -109,12 +109,12 @@ from django.contrib.auth.decorators import login_required
 
         return render_to_response('twitter_monitor/monitoramento_detail.html', {'pk': monit_id, 'atual': nome_monitor, 'usuario': usuario, 'object_list': itens, 		       'monitoramento': monitoramento})
 
-    #View que aplica os filtros, classificações e ação de deletar 
+    #View que aplica os filtros, classificações e ação de deletar
     @csrf_exempt
     def aplicar(request, pk):
-    
+
         cod_obj = request.POST.getlist('choice')
-        cod_acao = request.POST.get('acao')  
+        cod_acao = request.POST.get('acao')
         tag = request.POST.get('tag')
         sentimento = ["NEG", "POS", "NEU"]
         filtros = ["total", "por_sem", "por_mes"]
@@ -132,7 +132,7 @@ from django.contrib.auth.decorators import login_required
 	        objeto = get_object_or_404(Item, pk=item)
 	        objeto.tag = tag
 	        objeto.save()
-  
+
         if(cod_acao == "deletar"):
 	    for item in cod_obj:
 	        objeto = get_object_or_404(Item, pk=item)
@@ -145,7 +145,7 @@ from django.contrib.auth.decorators import login_required
 	        objeto.save()
 
         return HttpResponseRedirect(reverse('monitoramento:monitoramento_detail', args=(objeto.monit_id, 0)))
-    #View que configura a URL de busca 
+    #View que configura a URL de busca
     @csrf_exempt
     def coletar(request):
         pk = request.POST.get('palavra')
@@ -167,45 +167,45 @@ from django.contrib.auth.decorators import login_required
         return HttpResponseRedirect(reverse('monitoramento:monitoramentos'))
 
 
-      	
+
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
     #View de criação de um novo monitoramento
-    class MonitoramentoCreate(LoginRequiredMixin, CreateView):
-        model = Monitoramento
-        fields = ['palavra']
-        success_url = reverse_lazy('monitoramento:monitoramentos')
+class MonitoramentoCreate(LoginRequiredMixin, CreateView):
+    model = Monitoramento
+    fields = ['palavra']
+    success_url = reverse_lazy('monitoramento:monitoramentos')
 
-        def form_valid(self, form):
-	    object = form.save(commit=False)
-	    object.usuario = self.request.user
-	    object.save()
-	    return super(MonitoramentoCreate, self).form_valid(form)
+    def form_valid(self, form):
+        object = form.save(commit=False)
+        object.usuario = self.request.user
+        object.save()
+        return super(MonitoramentoCreate, self).form_valid(form)
 
     #View de cadastro para novo usuário
-    def cadastro(request):
-        if request.method == 'POST':
-	    form = UserCreationForm(request.POST)
+def cadastro(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
 	    if form.is_valid():
-	        form.save()
-	        username = form.cleaned_data.get('username')
-	        raw_password = form.cleaned_data.get('password1')
-	        user = authenticate(username=username, password=raw_password)
-	        login(request, user)
-	        return redirect('monitoramento:monitoramentos')
-        else:
-	    form = UserCreationForm()
-        return render(request, 'twitter_monitor/cadastro_form.html', {'form': form})
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('monitoramento:monitoramentos')
+    else:
+        form = UserCreationForm()
+    return render(request, 'twitter_monitor/cadastro_form.html', {'form': form})
 
     #View de mudança da palavra monitorada
-    class MonitoramentoUpdate(UpdateView):
-        model = Monitoramento
-        fields = ['palavra']
+class MonitoramentoUpdate(UpdateView):
+    model = Monitoramento
+    fields = ['palavra']
 
     #View para exclusão de monitoramentos existentes
-    class MonitoramentoDelete(DeleteView):
-        model = Monitoramento
-        success_url = reverse_lazy('monitoramento:monitoramentos')
+class MonitoramentoDelete(DeleteView):
+    model = Monitoramento
+    success_url = reverse_lazy('monitoramento:monitoramentos')
 
     #Views da API Rest
 
@@ -213,15 +213,15 @@ from serializers import MonitoramentoSerializer, ItemSerializer
 from django.db.models import Q
 from rest_framework import generics
 
-    class MonitoramentoList(generics.ListCreateAPIView):
-        lookup_url_kwarg = 'usuario'  
-        serializer_class = MonitoramentoSerializer
+class MonitoramentoList(generics.ListCreateAPIView):
+    lookup_url_kwarg = 'usuario'
+    serializer_class = MonitoramentoSerializer
 
-        def get_queryset(self):
-	    usuario = self.kwargs.get(self.lookup_url_kwarg)
-	    monits = Monitoramento.objects.filter(usuario=usuario)
-	    return monits
-	
+    def get_queryset(self):
+        usuario = self.kwargs.get(self.lookup_url_kwarg)
+        monits = Monitoramento.objects.filter(usuario=usuario)
+        return monits
+
     class ItemList(generics.ListCreateAPIView):
         lookup_url_kwarg = ('usuario', 'monit')
         serializer_class = ItemSerializer
@@ -238,7 +238,7 @@ from rest_framework import generics
 
         def get_queryset(self):
 	    id = self.kwargs.get(self.lookup_url_kwarg)
-	    item = Item.objects.filter(id=id)	
+	    item = Item.objects.filter(id=id)
 	    return item
 
     class ItemListMensal(generics.ListAPIView):
